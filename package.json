@@ -1,0 +1,20 @@
+{
+  "name": "com.ewigedreamer.additional",
+  "version": "1.0.0",
+  "displayName": "Unity Additional",
+  "description": "Additional components and some types.",
+  "unity": "2021.3",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "keywords": [
+    "additional",
+    "component",
+    "type"
+  ],
+  "author": {
+    "name": "Pavel Sborshchikov",
+    "email": "ewigedreamer@gmail.com",
+    "url": "https://github.com/EwigeDreamer"
+  }
+}
