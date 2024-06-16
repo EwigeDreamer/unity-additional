@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace EwigeDreamer.Additional.Components.UI
+namespace ED.Additional.Components.UI
 {
     [RequireComponent(typeof(SliderToggle))]
     public class SliderToggleEvents : MonoBehaviour

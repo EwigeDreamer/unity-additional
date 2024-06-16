@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace EwigeDreamer.Additional.Collections
+namespace ED.Additional.Collections
 {
     public class EnumerableList<T> : List<T>, IEnumerator<T>
     {

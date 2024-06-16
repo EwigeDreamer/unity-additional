@@ -1,7 +1,7 @@
 {
   "name": "com.ewigedreamer.additional",
-  "version": "1.0.0",
-  "displayName": "Unity Additional",
+  "version": "1.0.1",
+  "displayName": "ED Unity Additional",
   "description": "Additional components and some types.",
   "unity": "2021.3",
   "documentationUrl": "",

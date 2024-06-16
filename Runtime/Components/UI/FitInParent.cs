@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EwigeDreamer.Additional.Components.UI
+namespace ED.Additional.Components.UI
 {
     [RequireComponent(typeof(RectTransform))]
     public class FitInParent : MonoBehaviour

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EwigeDreamer.Additional.Components.Shaders
+namespace ED.Additional.Components.Shaders
 {
     [RequireComponent(typeof(Renderer))]
     public abstract class ShaderWrapper : MonoBehaviour

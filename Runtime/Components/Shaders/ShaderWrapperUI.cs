@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EwigeDreamer.Additional.Components.Shaders
+namespace ED.Additional.Components.Shaders
 {
     [RequireComponent(typeof(Image))]
     public abstract class ShaderWrapperUI : MonoBehaviour

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EwigeDreamer.Additional.Collections
+namespace ED.Additional.Collections
 {
     public class FixedSizeQueue<T> : Queue<T>
     {

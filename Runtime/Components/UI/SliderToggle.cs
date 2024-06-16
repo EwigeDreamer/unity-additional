@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace EwigeDreamer.Additional.Components.UI
+namespace ED.Additional.Components.UI
 {
     public class SliderToggle : Scrollbar, IPointerClickHandler, IEndDragHandler
     {

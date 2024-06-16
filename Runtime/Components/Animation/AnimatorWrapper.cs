@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace EwigeDreamer.Additional.Components.Animation
+namespace ED.Additional.Components.Animation
 {
     [RequireComponent(typeof(Animator))]
     public class AnimatorWrapper<TStateEnum> : MonoBehaviour where TStateEnum : Enum

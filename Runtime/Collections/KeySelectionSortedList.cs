@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EwigeDreamer.Additional.Collections
+namespace ED.Additional.Collections
 {
     public class KeySelectionSortedList<TKey, TValue> : List<TValue> where TKey : IComparable
     {
