@@ -1,3 +1,13 @@
+## [1.1.0] - 2024-07-07
+
+### Added
+
+- HashList
+- SerializableDictionary
+- StackList
+- ProfilerSample
+- MathUtility
+
 ## [1.0.1] - 2024-06-17
 
 ### Fixed
