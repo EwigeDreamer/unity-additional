@@ -6,6 +6,7 @@ namespace ED.Additional.Utilities
     {
         public static int Loop(int value, int min, int max) {
             var len = max - min;
+            if (len <= 1) return min;
             value -= min;
             var loops = value / len;
             if (value < 0 && value % len != 0) --loops;

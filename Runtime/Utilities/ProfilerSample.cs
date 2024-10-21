@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.Profiling;
 
-namespace ED.Additional.Misc
+namespace ED.Additional.Utilities
 {
     public class ProfilerSample : IDisposable
     {
