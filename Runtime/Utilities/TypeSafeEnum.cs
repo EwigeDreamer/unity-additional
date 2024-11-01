@@ -93,10 +93,13 @@ namespace ED.Additional.Utilities
 
         static TypeSafeValueEnum()
         {
-            Values = typeof(TSelf).GetProperties(BindingFlags.Public | BindingFlags.Static)
-                .Where(a => a.PropertyType == typeof(TSelf))
-                .Select(a => (TSelf)a.GetValue(null))
-                .ToList();
+            var fields = typeof(TSelf).GetFields(BindingFlags.Public | BindingFlags.Static)
+                .Where(a => a.FieldType == typeof(TSelf))
+                .Select(a => (TSelf)a.GetValue(null));
+            var properties = typeof(TSelf).GetProperties(BindingFlags.Public | BindingFlags.Static)
+                .Where(a => a.PropertyType == typeof(TSelf) && a.CanRead && a.GetIndexParameters().Length == 0)
+                .Select(a => (TSelf)a.GetValue(null));
+            Values = fields.Concat(properties).ToList();
         }
 
         protected TypeSafeValueEnum(string name, TValue value) : base(name, value) { }

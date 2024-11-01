@@ -1,3 +1,9 @@
+## [1.2.2] - 2024-11-01
+
+### Fixed
+
+- Fix TypeSafeEnum Values property
+
 ## [1.2.1] - 2024-10-21
 
 ### Improved TypeSafeEnum
