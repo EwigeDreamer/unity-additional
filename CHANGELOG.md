@@ -1,3 +1,7 @@
+## [1.3.1] - 2024-11-08
+### Changed
+- CancellationTokenUtility.Combine() signature
+
 ## [1.3.0] - 2024-11-07
 ### Added
 - DisposableCollection
