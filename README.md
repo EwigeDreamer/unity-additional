@@ -8,4 +8,4 @@ To use this in your Unity project import it from Unity Package Manager. You can 
 
 ## Dependensies
 
-### [Unity Extensions](https://github.com/EwigeDreamer/unity-extensions)
+### [Odin Inspector (for property drawers)](https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041)

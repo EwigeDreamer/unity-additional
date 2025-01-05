@@ -1,3 +1,9 @@
+## [1.4.0] - 2025-01-05
+### Added
+- DateTime Odin drawer
+### Changed
+- asmdef naming
+
 ## [1.3.1] - 2024-11-08
 ### Changed
 - CancellationTokenUtility.Combine() signature
