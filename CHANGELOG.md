@@ -1,3 +1,7 @@
+## [1.5.0] - 2025-03-09
+### Added
+- GizmosUtility
+
 ## [1.4.0] - 2025-01-05
 ### Added
 - DateTime Odin drawer
