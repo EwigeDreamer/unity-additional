@@ -1,3 +1,7 @@
+## [1.6.0] - 2025-05-06
+### Added
+- ServiceLocator
+
 ## [1.5.0] - 2025-03-09
 ### Added
 - GizmosUtility
