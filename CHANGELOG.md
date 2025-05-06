@@ -1,3 +1,7 @@
+## [1.6.1] - 2025-05-06
+### Added
+- TypeSafeEnum PropertyDrawer
+
 ## [1.6.0] - 2025-05-06
 ### Added
 - ServiceLocator
