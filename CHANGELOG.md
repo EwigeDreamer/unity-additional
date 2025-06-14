@@ -1,3 +1,7 @@
+## [1.7.0] - 2025-06-14
+### Added
+- VectorUtility
+
 ## [1.6.1] - 2025-05-06
 ### Added
 - TypeSafeEnum PropertyDrawer
