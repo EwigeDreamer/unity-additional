@@ -1,3 +1,10 @@
+## [1.8.0] - 2025-08-06
+### Added
+- HandlesUtility
+- GizmosUtility new methods
+### Changed
+- GizmosUtility logic
+
 ## [1.7.0] - 2025-06-14
 ### Added
 - VectorUtility
