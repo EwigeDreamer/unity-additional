@@ -1,14 +1,116 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace ED.Additional.Utilities
 {
     public static class GizmosUtility
     {
-        public static void DrawWireCube(Vector3 position, Quaternion rotation, Vector3 scale, Color color, bool crosshair = false)
+        public static void DrawWireCube(Vector3 position, Quaternion rotation, Vector3 scale, Color? color = null, bool crosshair = false)
         {
             using var h1 = BeginLocation(position, rotation, scale);
-            using var h2 = BeginColor(color);
+            if (color.HasValue)
+            {
+                using var h2 = BeginColor(color.Value);
+                DrawWireCube_Internal(crosshair);
+            }
+            else DrawWireCube_Internal(crosshair);
+        }
+
+        public static void DrawWireCircle(Vector3 position, Vector3 normal, float radius, Color? color = null, bool crosshair = false)
+        {
+            var rotation = Quaternion.LookRotation(normal);
+            var scale = Vector3.one * radius * 2f;
+            DrawWireCircle(position, rotation, scale, color, crosshair);
+        }
+        
+        public static void DrawWireCircle(Vector3 position, Quaternion rotation, Vector3 scale, Color? color = null, bool crosshair = false)
+        {
+            using var h1 = BeginLocation(position, rotation, scale);
+            if (color.HasValue)
+            {
+                using var h2 = BeginColor(color.Value);
+                DrawWireCircle_Internal(crosshair);
+            }
+            else DrawWireCircle_Internal(crosshair);
+        }
+        
+        public static void DrawWireSphere(Vector3 position, Quaternion rotation, Vector3 scale, Color? color = null, bool crosshair = false)
+        {
+            using var h1 = BeginLocation(position, rotation, scale);
+            if (color.HasValue)
+            {
+                using var h2 = BeginColor(color.Value);
+                DrawWireSphere_Internal(crosshair);
+            }
+            else DrawWireSphere_Internal(crosshair);
+        }
+
+        public static void DrawWireArrow(Vector3 start, Vector3 end, float thicness, Color? color = null)
+        {
+            var path = end - start;
+            var position = Vector3.LerpUnclamped(start, end, 0.5f);
+            var rotation = Quaternion.LookRotation(path);
+            var scale = new Vector3(thicness, thicness, path.magnitude);
+            DrawWireArrow(position, rotation, scale, color);
+        }
+        
+        public static void DrawWireArrow(Vector3 position, Quaternion rotation, Vector3 scale, Color? color = null)
+        {
+            using var h1 = BeginLocation(position, rotation, scale);
+            if (color.HasValue)
+            {
+                using var h2 = BeginColor(color.Value);
+                DrawArrow_Internal();
+            }
+            else DrawArrow_Internal();
+        }
+
+        public static void DrawSphereSpring(Vector3 start, Vector3 end, float thicness, Color? color = null)
+        {
+            var path = end - start;
+            var position = Vector3.LerpUnclamped(start, end, 0.5f);
+            var rotation = Quaternion.LookRotation(path);
+            var scale = new Vector3(thicness, thicness, path.magnitude);
+            DrawSphereSpring(position, rotation, scale, color);
+        }
+        
+        public static void DrawSphereSpring(Vector3 position, Quaternion rotation, Vector3 scale, Color? color = null)
+        {
+            using var h1 = BeginLocation(position, rotation, scale);
+            if (color.HasValue)
+            {
+                using var h2 = BeginColor(color.Value);
+                DrawSphereSpring_Internal();
+            }
+            else DrawSphereSpring_Internal();
+        }
+
+        public static void DrawCylinderSpring(Vector3 start, Vector3 end, float thicness, Color? color = null)
+        {
+            var path = end - start;
+            var position = Vector3.LerpUnclamped(start, end, 0.5f);
+            var rotation = Quaternion.LookRotation(path);
+            var scale = new Vector3(thicness, thicness, path.magnitude);
+            DrawCylinderSpring(position, rotation, scale, color);
+        }
+        
+        public static void DrawCylinderSpring(Vector3 position, Quaternion rotation, Vector3 scale, Color? color = null)
+        {
+            using var h1 = BeginLocation(position, rotation, scale);
+            if (color.HasValue)
+            {
+                using var h2 = BeginColor(color.Value);
+                DrawCylinderSpring_Internal();
+            }
+            else DrawCylinderSpring_Internal();
+        }
+
+#region Internal
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void DrawWireCube_Internal(bool crosshair)
+        {
             Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
             if (crosshair)
             {
@@ -18,10 +120,9 @@ namespace ED.Additional.Utilities
             }
         }
 
-        public static void DrawWireCircle(Vector3 position, Quaternion rotation, Vector3 scale, Color color, bool crosshair = false)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void DrawWireCircle_Internal(bool crosshair)
         {
-            using var h1 = BeginLocation(position, rotation, scale);
-            using var h2 = BeginColor(color);
             for (int i = 1; i < _circlePoints.Length; i++)
                 Gizmos.DrawLine(_circlePoints[i - 1], _circlePoints[i]);
             if (crosshair)
@@ -30,11 +131,10 @@ namespace ED.Additional.Utilities
                 Gizmos.DrawLine(_crosshairPoints[2], _crosshairPoints[3]);
             }
         }
-        
-        public static void DrawWireSphere(Vector3 position, Quaternion rotation, Vector3 scale, Color color, bool crosshair = false)
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void DrawWireSphere_Internal(bool crosshair)
         {
-            using var h1 = BeginLocation(position, rotation, scale);
-            using var h2 = BeginColor(color);
             Gizmos.DrawWireSphere(Vector3.zero, 0.5f);
             if (crosshair)
             {
@@ -44,21 +144,28 @@ namespace ED.Additional.Utilities
             }
         }
 
-        public static void DrawWireArrow(Vector3 position, Quaternion rotation, Vector3 scale, Color color)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void DrawArrow_Internal()
         {
-            using var h1 = BeginLocation(position, rotation, scale);
-            using var h2 = BeginColor(color);
             for (int i = 1; i < _arrowPoints.Length; i++)
                 Gizmos.DrawLine(_arrowPoints[i - 1], _arrowPoints[i]);
         }
 
-        public static void DrawSwirlSphere(Vector3 position, Quaternion rotation, Vector3 scale, Color color)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void DrawSphereSpring_Internal()
         {
-            using var h1 = BeginLocation(position, rotation, scale);
-            using var h2 = BeginColor(color);
-            for (int i = 1; i < _swirlPoints.Length; i++)
-                Gizmos.DrawLine(_swirlPoints[i - 1], _swirlPoints[i]);
+            for (int i = 1; i < _sphereSpringPoints.Length; i++)
+                Gizmos.DrawLine(_sphereSpringPoints[i - 1], _sphereSpringPoints[i]);
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void DrawCylinderSpring_Internal()
+        {
+            for (int i = 1; i < _cylinderSpringPoints.Length; i++)
+                Gizmos.DrawLine(_cylinderSpringPoints[i - 1], _cylinderSpringPoints[i]);
+        }
+
+#endregion Internal
         
         public static ColorHandler BeginColor(Color color) => new(color);
         public static MatrixHandler BeginMatrix(Matrix4x4 matrix) => new(matrix);
@@ -182,7 +289,7 @@ namespace ED.Additional.Utilities
             new Vector3(0f, 0f, 0.5f),
         };
 
-        private static readonly Vector3[] _swirlPoints =
+        private static readonly Vector3[] _sphereSpringPoints =
         {
             new Vector3(0.000000f, 0.000000f, 0.500000f),
             new Vector3(0.014168f, 0.008180f, 0.499732f),
@@ -281,6 +388,59 @@ namespace ED.Additional.Utilities
             new Vector3(0.016351f, -0.028321f, -0.498929f),
             new Vector3(0.014168f, -0.008180f, -0.499732f),
             new Vector3(0.000000f, 0.000000f, -0.500000f),
+        };
+
+        private static readonly Vector3[] _cylinderSpringPoints =
+        {
+            new Vector3(0.500000f, 0.000000f, -0.500000f),
+            new Vector3(0.433013f, 0.250000f, -0.479167f),
+            new Vector3(0.250000f, 0.433013f, -0.458333f),
+            new Vector3(0.000000f, 0.500000f, -0.437500f),
+            new Vector3(-0.250000f, 0.433013f, -0.416667f),
+            new Vector3(-0.433013f, 0.250000f, -0.395833f),
+            new Vector3(-0.500000f, 0.000000f, -0.375000f),
+            new Vector3(-0.433013f, -0.250000f, -0.354167f),
+            new Vector3(-0.250000f, -0.433013f, -0.333333f),
+            new Vector3(0.000000f, -0.500000f, -0.312500f),
+            new Vector3(0.250000f, -0.433013f, -0.291667f),
+            new Vector3(0.433013f, -0.250000f, -0.270833f),
+            new Vector3(0.500000f, 0.000000f, -0.250000f),
+            new Vector3(0.433013f, 0.250000f, -0.229167f),
+            new Vector3(0.250000f, 0.433013f, -0.208333f),
+            new Vector3(0.000000f, 0.500000f, -0.187500f),
+            new Vector3(-0.250000f, 0.433013f, -0.166667f),
+            new Vector3(-0.433013f, 0.250000f, -0.145833f),
+            new Vector3(-0.500000f, 0.000000f, -0.125000f),
+            new Vector3(-0.433013f, -0.250000f, -0.104167f),
+            new Vector3(-0.249999f, -0.433013f, -0.083333f),
+            new Vector3(0.000001f, -0.500000f, -0.062500f),
+            new Vector3(0.250001f, -0.433012f, -0.041667f),
+            new Vector3(0.433013f, -0.249999f, -0.020833f),
+            new Vector3(0.500000f, 0.000001f, 0.000000f),
+            new Vector3(0.433012f, 0.250001f, 0.020833f),
+            new Vector3(0.250000f, 0.433013f, 0.041667f),
+            new Vector3(0.000000f, 0.500000f, 0.062500f),
+            new Vector3(-0.250000f, 0.433013f, 0.083333f),
+            new Vector3(-0.433013f, 0.250000f, 0.104167f),
+            new Vector3(-0.500000f, 0.000001f, 0.125000f),
+            new Vector3(-0.433013f, -0.249999f, 0.145833f),
+            new Vector3(-0.250001f, -0.433012f, 0.166667f),
+            new Vector3(-0.000001f, -0.500000f, 0.187500f),
+            new Vector3(0.249999f, -0.433014f, 0.208333f),
+            new Vector3(0.433012f, -0.250001f, 0.229167f),
+            new Vector3(0.500000f, -0.000002f, 0.250000f),
+            new Vector3(0.433014f, 0.249998f, 0.270833f),
+            new Vector3(0.250003f, 0.433011f, 0.291666f),
+            new Vector3(0.000003f, 0.500000f, 0.312500f),
+            new Vector3(-0.249997f, 0.433014f, 0.333333f),
+            new Vector3(-0.433011f, 0.250003f, 0.354166f),
+            new Vector3(-0.500000f, 0.000003f, 0.375000f),
+            new Vector3(-0.433015f, -0.249997f, 0.395833f),
+            new Vector3(-0.250004f, -0.433011f, 0.416666f),
+            new Vector3(-0.000004f, -0.500000f, 0.437500f),
+            new Vector3(0.249996f, -0.433015f, 0.458333f),
+            new Vector3(0.433010f, -0.250004f, 0.479166f),
+            new Vector3(0.500000f, -0.000004f, 0.500000f),
         };
     }
 }

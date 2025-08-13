@@ -1,3 +1,7 @@
+## [1.9.0] - 2025-08-13
+### Added
+- GizmosUtility new methods
+
 ## [1.8.0] - 2025-08-06
 ### Added
 - HandlesUtility
