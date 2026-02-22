@@ -1,3 +1,7 @@
+## [1.10.0] - 2026-02-23
+### Added
+- ArrayPool
+
 ## [1.9.0] - 2025-08-13
 ### Added
 - GizmosUtility new methods
